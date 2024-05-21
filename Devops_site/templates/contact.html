@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<section class="contact">
+    <h1>Contact Us</h1>
+    <p>Have questions about DevOps? Reach out to us! Our team of experts is here to help you understand how DevOps can benefit your organization.</p>
+    <p>Fill out the form below, and we'll get back to you as soon as possible.</p>
+    <form action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+    <h2>Contact Information</h2>
+    <p>Email: support@devopsadvertisement.com</p>
+    <p>Phone: +123-456-7890</p>
+    <p>Address: 123 DevOps Lane, Tech City, TX 12345</p>
+</section>
+{% endblock %}
