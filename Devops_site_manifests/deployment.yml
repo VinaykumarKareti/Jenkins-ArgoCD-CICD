@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: python-cicd-app
-        image: vinay74/ultimate-cicd:7
+        image: vinay74/Myfirst-cicd:replaceImageTag
         ports:
         - containerPort: 5000
