@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sh 'ls -ltr'
                 // build the project and create a JAR file
-                sh 'cd Devops_site && apt-get install python3-flask'
+                sh 'cd Devops_site && apt-get install python3-flask -y'
             }
         }
         
