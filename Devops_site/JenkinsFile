@@ -19,30 +19,7 @@ pipeline {
                 sh 'cd Devops_site && pip install -r requirements.txt'
             }
         }
-        stage('Static Code Analysis') {
-            environment {
-                SONAR_URL = "http://52.201.152.181:9000"
-            }
-             steps {
-                // Install sonar-scanner
-                sh '''
-                    apt-get update
-                    apt-get install -y wget unzip
-                    wget -O sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
-                    unzip sonar-scanner.zip -d /opt
-                    ln -s /opt/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner /usr/local/bin/sonar-scanner
-                '''
-                // Run SonarQube analysis
-                withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-                    sh '''
-                        cd Devops_site
-                        sonar-scanner \
-                        -Dsonar.login=$SONAR_AUTH_TOKEN \
-                        -Dsonar.host.url=$SONAR_URL
-                    '''
-                }
-            }
-        }
+        
         stage('Build and Push Docker Image') {
             environment {
                 DOCKER_IMAGE = "vinay74/Myfirst-cicd:${BUILD_NUMBER}"
