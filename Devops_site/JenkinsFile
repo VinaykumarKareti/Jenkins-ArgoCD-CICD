@@ -40,21 +40,23 @@ pipeline {
             environment {
                 GIT_REPO_NAME = "Jenkins-ArgoCD-CICD" //<<----------change----------------->>
                 GIT_USER_NAME = "VinaykumarKareti"     //<<----------change----------------->>
+                 GIT_URL = "https://github.com/VinaykumarKareti/Jenkins-ArgoCD-CICD.git"
             }
             steps {
-                withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                    sh '''
-                        echo ${pwd}
-                        git config user.email "21pa1a0574@vishnu.edu.in"
-                        git config user.name "VinaykumarKareti"
-                        git checkout main
-                        git pull origin main
-                        BUILD_NUMBER=${BUILD_NUMBER}
-                        sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" Devops_site_manifests/deployment.yml
-                        git add Devops_site_manifests/deployment.yml
-                        git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-                    '''
+                dir("${GIT_REPO_NAME}") {
+                    withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                        sh '''
+                            git config user.email "21pa1a0574@vishnu.edu.in"
+                            git config user.name "VinaykumarKareti"
+                            git checkout main
+                            git pull origin main
+                            BUILD_NUMBER=${BUILD_NUMBER}
+                            sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" Devops_site_manifests/deployment.yml
+                            git add Devops_site_manifests/deployment.yml
+                            git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                            git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                        '''
+                    }
                 }
             }
         }
