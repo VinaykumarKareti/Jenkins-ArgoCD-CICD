@@ -44,6 +44,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
+                        set -e
                         git config user.email "21pa1a0574@vishnu.edu.in"
                         git config user.name "VinaykumarKareti"
                         git checkout main
