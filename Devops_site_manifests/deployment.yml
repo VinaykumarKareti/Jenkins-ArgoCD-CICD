@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: python-cicd-app
-        image: vinay74/Myfirst-cicd:13
+        image: vinay74/myfirst-cicd:13
         ports:
         - containerPort: 5000
