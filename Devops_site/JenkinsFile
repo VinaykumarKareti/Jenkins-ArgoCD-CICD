@@ -46,7 +46,7 @@ pipeline {
                 dir("${GIT_REPO_NAME}") {
                     withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                         sh '''
-                            git clone ${GIT_URL}
+                            // git clone ${GIT_URL}
                             cd Jenkins-ArgoCD-CICD
                             git config user.email "21pa1a0574@vishnu.edu.in"
                             git config user.name "VinaykumarKareti"
