@@ -50,7 +50,7 @@ pipeline {
                             ls
                             cd Jenkins-ArgoCD-CICD
                             git config user.email "21pa1a0574@vishnu.edu.in"
-                            git config user.name "VinaykumarKareti"
+                            git config user.name "username"
                             git checkout main
                             git pull origin main
                             BUILD_NUMBER=${BUILD_NUMBER}
